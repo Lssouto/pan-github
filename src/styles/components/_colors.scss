@@ -1,0 +1,23 @@
+// Color name for class -> (color value) / (text color)
+$bg-colors: (
+    primary:                 $primary $white,
+    dark-primary:            $dark-primary $white,
+    secundary:               $secundary $white,
+    dark-secundary:          $dark-secundary $white,
+    accent:                  $accent $white,
+    warning:                 $warning $white,
+    error:                   $error $white,
+    medium-gray:             $medium-gray $white,
+    light-gray:              $light-gray $medium-gray,
+    black:                   $black $white,
+    white:                   $white $medium-gray,
+);
+
+@each $index,$valor in $bg-colors{
+    .bg-#{$index}{
+        @include bg-style(nth($valor,1),nth($valor,2));
+    }
+    .color-#{$index}{
+        color: nth($valor,1);
+    }
+}
