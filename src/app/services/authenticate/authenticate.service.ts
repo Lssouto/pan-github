@@ -10,15 +10,13 @@ export class AuthenticateService {
   private isUserAuthenticate: boolean;
   private acessToken: string;
   constructor(private httpService: HttpService) {
-    // this.isUserAuthenticate = false;
-    // this.acessToken = '';
-    this.isUserAuthenticate = true;
-    this.acessToken = 'e6bae06aa7ea983f13a1d65894a855ee03166378';
+    this.isUserAuthenticate = false;
+    this.acessToken = '';
   }
 
   public githubAuthenticate(code: string): Observable<boolean> {
     // RAW EXAMPLE {"access_token":"8d1153577dbdd38b4e487aa80ff6a024bac5dd24","token_type":"bearer","scope":"user:email"}
-    return this.httpService.post('https://github.com/login/oauth/access_token', {
+    return this.httpService.post('/login', {
       client_id: 'c63b5ef5b81e7610914a',
       client_secret: '32f6b8910137569d316eae627e3947b1aa37d77b',
       code,

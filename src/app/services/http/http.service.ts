@@ -10,7 +10,10 @@ import { AuthenticateService } from '../authenticate/authenticate.service';
 
 export class HttpService {
   private timeoutTime: number = 30 * 1000; // 30s
-  constructor(private http: HttpClient) { }
+  private locationUrl: string;
+  constructor(private http: HttpClient) {
+    this.locationUrl = `https://${window.location.hostname}:8080/api`;
+  }
 
   public get(url: string, acessToken: string): Subject<any> {
     // Subject to easy control the response
@@ -20,7 +23,7 @@ export class HttpService {
       httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'})
     }, this.timeoutTime);
 
-    this.http.get(url, { headers: this.getHeaders(acessToken) })
+    this.http.get(`${this.locationUrl}${url}`, { headers: this.getHeaders(acessToken) })
         .pipe(
           catchError((error) => {
             httpResponse.error(error);
@@ -44,7 +47,7 @@ export class HttpService {
       httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'})
     }, this.timeoutTime);
 
-    this.http.post(url, body, { headers: this.getHeaders(acessToken)})
+    this.http.post(`${this.locationUrl}${url}`, body, { headers: this.getHeaders(acessToken)})
         .pipe(
           catchError((error) => {
             httpResponse.error(error);

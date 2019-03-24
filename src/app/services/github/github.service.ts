@@ -13,7 +13,7 @@ export class GithubService {
   constructor( private httpService: HttpService, private authService: AuthenticateService ) { }
 
   public getRepoInformation(): Observable<RepoInfoModel[]> {
-    return this.httpService.get('https://api.github.com/user/repos', this.authService.getAccesToken())
+    return this.httpService.get('/user/repos', this.authService.getAccesToken())
       .pipe(
         map((response) => {
           return response.map( (res) => {
