@@ -1,14 +1,10 @@
 <app-repo-list-header (filterOptions)="filterOptionsHandler($event)"></app-repo-list-header>
 <div class="container">
-  <ul class="repi-info-list-header" *ngIf="activeListClassStyle == '__list'">
-    <li>Nome</li>
-    <li>Stars</li>
-    <li>Forks</li>
-  </ul>
 
   <ul class="repo-info-list" [ngClass]="activeListClassStyle">
     <li *ngFor="let repoInfo of reposInformationArray | orderBy:orderParams">
       <div class="card-name">
+        <span class="card-identifier">Nome</span>
         {{ repoInfo.name | capitalize }}
       </div>
       <div class="card-count-information">

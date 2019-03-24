@@ -1,43 +1,45 @@
-// Icons for import or config like Icomoon
 @font-face {
-    font-family: 'icomoon';
-    src:  url('/assets/');
-    src:  url('/assets/#iefix') format('embedded-opentype'),
-      url('/assets/fonts/icomoon.ttf?hbnvse') format('truetype'),
-      url('/assets/fonts/icomoon.woff?hbnvse') format('woff'),
-      url('/assets/fonts/icomoon.svg?hbnvse#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-  
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-star-solid:before {
-    content: "\e900";
-  }
-  .icon-fork:before {
-    content: "\e901";
-  }
-  .icon-menu:before {
-    content: "\e9bd";
-  }
-  .icon-checkbox-unchecked:before {
-    content: "\ea53";
-  }
-  .icon-github:before {
-    content: "\eab0";
-  }
-  
+  font-family: 'icomoon';
+  src:  url('/assets/fonts/icomoon.eot?ovz0cn');
+  src:  url('/assets/fonts/icomoon.eot?ovz0cn#iefix') format('embedded-opentype'),
+    url('/assets/fonts/icomoon.ttf?ovz0cn') format('truetype'),
+    url('/assets/fonts/icomoon.woff?ovz0cn') format('woff'),
+    url('/assets/fonts/icomoon.svg?ovz0cn#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo:before {
+  content: "\e902";
+  color: #0066b2;
+}
+.icon-star-solid:before {
+  content: "\e900";
+}
+.icon-fork:before {
+  content: "\e901";
+}
+.icon-menu:before {
+  content: "\e9bd";
+}
+.icon-checkbox-unchecked:before {
+  content: "\ea53";
+}
+.icon-github:before {
+  content: "\eab0";
+}
