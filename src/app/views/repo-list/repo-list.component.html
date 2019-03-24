@@ -1,3 +1,37 @@
-<p>
-  {{reposInformationArray}}
-</p>
+<div class="container">
+  <div class="view-list">
+    <ul class="toggle-view-list">
+      <li>Alterar Visualização</li>
+      <li (click)="toggleListClass('__card')">cards</li>
+      <li (click)="toggleListClass('__list')">list</li>
+    </ul>
+  </div>
+
+  <ul class="repi-info-list-header" *ngIf="activeListClassStyle == '__list'">
+    <li>Nome</li>
+    <li>Stars</li>
+    <li>Forks</li>
+  </ul>
+
+  <ul class="repo-info-list" [ngClass]="activeListClassStyle">
+    <li *ngFor="let repoInfo of reposInformationArray">
+      <div class="card-name">
+        {{ repoInfo.name | capitalize }}
+      </div>
+      <div class="card-count-information">
+        <div class="card-stars">
+          <span class="card-information-description">
+            S
+          </span>
+          {{ repoInfo.qtdStars }}
+        </div>
+        <div class="card-forks">
+            <span class="card-information-description">
+              S
+            </span>
+            {{ repoInfo.qtdForks }}
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
