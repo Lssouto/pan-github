@@ -40,11 +40,8 @@ export class RepoListComponent implements OnInit {
     }));
   }
 
-  private toggleListClass(type: string) {
-    this.activeListClassStyle = type;
-  }
-
-  private toggleOrder(type: string) {
-    this.orderParams = type;
+  private filterOptionsHandler(val) {
+    this.activeListClassStyle = val.classStyle;
+    this.orderParams = val.order;
   }
 }

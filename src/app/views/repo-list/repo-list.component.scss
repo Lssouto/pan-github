@@ -3,8 +3,10 @@
 
 .repo-info-list {
     &.__card {
-        @include flex-align(0 1 20%);
+        @include flex-align(0 1 25%);
         flex-wrap: wrap;
+        justify-content: space-between;
+
         & > li  {
             border-radius: 6px;
             box-shadow: 0 2px 3px 1px rgba($black, .1);

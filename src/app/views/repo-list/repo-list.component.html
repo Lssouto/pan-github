@@ -1,21 +1,5 @@
+<app-repo-list-header (filterOptions)="filterOptionsHandler($event)"></app-repo-list-header>
 <div class="container">
-
-  <ul class="toggle-view-list">
-    <li>Alterar Visualização</li>
-    <li (click)="toggleListClass('__list')"><span class="icon icon-menu"></span></li>
-    <li (click)="toggleListClass('__card')"><span class="icon icon-checkbox-unchecked"></span></li>
-  </ul>
-
-  <ul class="order-list">
-    <li (click)="toggleOrder('name')">Nome</li>
-    <li (click)="toggleOrder('qtdStars')">Stars</li>
-    <li (click)="toggleOrder('qtdForks')">Forks</li>
-  </ul>
-
-  <div class="action">
-    <button class="btn bg-primary" (click)="logout()">Logout</button>
-  </div>
-
   <ul class="repi-info-list-header" *ngIf="activeListClassStyle == '__list'">
     <li>Nome</li>
     <li>Stars</li>

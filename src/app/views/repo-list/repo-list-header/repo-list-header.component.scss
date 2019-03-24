@@ -1,0 +1,46 @@
+@import '../../../../styles/_vars.scss';
+@import '../../../../styles/_mixins.scss';
+
+.navbar .dropdown-menu > a {
+    &:active,
+    &:focus {
+        background-color: $light-gray;
+        color: $black;
+    }
+}
+.navbar {
+    margin-bottom: 20px;
+    &-toggler {
+        border-color: $white;
+        padding: 0.25rem 0.5rem;
+        .caret {
+            border-radius: 2px;
+            height: 2px;
+            width: 25px;
+            background-color: $white;
+            margin: 5px 0;
+            display: block;
+        }
+    }
+}
+
+@include media($sm, 'max') {
+    .navbar {
+        .dropdown-menu {
+            background-color: lighten($black, 5%);
+            padding: 0;
+            margin-left: -1rem;
+            margin-right: -1rem;
+            .dropdown-item {
+                color: $white;
+                @include animation-spd(.12s);
+                &:not(:last-child) {
+                    border-bottom: 1px solid $white;
+                }
+                &:hover {
+                    color: $black;
+                }
+            }
+        }
+    }
+}

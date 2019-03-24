@@ -11,18 +11,6 @@
 .hidden{
     display: none;
 }
-.text-right {
-    text-align: right;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
 // Flex
 .flex-align{
     @include flex-align(1 1 auto);
@@ -40,17 +28,6 @@
         display: none;
     }
 }
-
-// More complex classes
-.container{
-    width: 1091px;
-    margin: 0 auto;
-    @include media($md,'max'){
-        width: 100%;
-        margin: 0;
-    }
-}
-
 
 ul.__simple {
     list-style: none;
