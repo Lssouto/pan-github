@@ -2,8 +2,8 @@
   <div class="view-list">
     <ul class="toggle-view-list">
       <li>Alterar Visualização</li>
-      <li (click)="toggleListClass('__card')">cards</li>
-      <li (click)="toggleListClass('__list')">list</li>
+      <li (click)="toggleListClass('__list')"><span class="icon icon-menu"></span></li>
+      <li (click)="toggleListClass('__card')"><span class="icon icon-checkbox-unchecked"></span></li>
     </ul>
   </div>
 
@@ -21,13 +21,13 @@
       <div class="card-count-information">
         <div class="card-stars">
           <span class="card-information-description">
-            S
+            <span class="icon icon-star-solid"></span>
           </span>
           {{ repoInfo.qtdStars }}
         </div>
         <div class="card-forks">
             <span class="card-information-description">
-              S
+                <span class="icon icon-fork"></span>
             </span>
             {{ repoInfo.qtdForks }}
         </div>

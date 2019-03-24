@@ -8,7 +8,7 @@
         & > li  {
             border-radius: 6px;
             box-shadow: 0 2px 3px 1px rgba($black, .1);
-            padding: 20px 15px;
+            padding: 25px 15px 10px 15px;
             position: relative;
         }
         .card {
@@ -19,7 +19,7 @@
             &-count-information {
                 position: absolute;
                 right: 10px;
-                top: 0;
+                top: 3px;
                 & > * {
                     display: inline-block;
                     font-size: 12px;
@@ -28,6 +28,8 @@
         }
         .card-information-description {
             display: inline-block;
+            margin-right: -2px;
+            margin-left: 8px;
         }
     }
     & > li {
