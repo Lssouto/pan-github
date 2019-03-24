@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ViewsModule } from './views/views.module';
 import { ROUTES } from './app.routes';
 import { ServicesModule } from './services/services.module';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ServicesModule } from './services/services.module';
     ),
     ServicesModule,
     HttpClientModule,
+    PipesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,10 +12,12 @@ export class RepoListComponent implements OnInit {
 
   private reposInformationArray: RepoInfoModel[];
   private activeListClassStyle: string;
+  private orderParams: string;
 
   constructor(private githubService: GithubService) {
     this.reposInformationArray = [];
     this.activeListClassStyle = '__card';
+    this.orderParams = 'name';
   }
 
   ngOnInit() {
@@ -40,5 +42,9 @@ export class RepoListComponent implements OnInit {
 
   private toggleListClass(type: string) {
     this.activeListClassStyle = type;
+  }
+
+  private toggleOrder(type: string) {
+    this.orderParams = type;
   }
 }

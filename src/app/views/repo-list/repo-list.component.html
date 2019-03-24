@@ -1,10 +1,19 @@
 <div class="container">
-  <div class="view-list">
-    <ul class="toggle-view-list">
-      <li>Alterar Visualização</li>
-      <li (click)="toggleListClass('__list')"><span class="icon icon-menu"></span></li>
-      <li (click)="toggleListClass('__card')"><span class="icon icon-checkbox-unchecked"></span></li>
-    </ul>
+
+  <ul class="toggle-view-list">
+    <li>Alterar Visualização</li>
+    <li (click)="toggleListClass('__list')"><span class="icon icon-menu"></span></li>
+    <li (click)="toggleListClass('__card')"><span class="icon icon-checkbox-unchecked"></span></li>
+  </ul>
+
+  <ul class="order-list">
+    <li (click)="toggleOrder('name')">Nome</li>
+    <li (click)="toggleOrder('qtdStars')">Stars</li>
+    <li (click)="toggleOrder('qtdForks')">Forks</li>
+  </ul>
+
+  <div class="action">
+    <button class="btn bg-primary" (click)="logout()">Logout</button>
   </div>
 
   <ul class="repi-info-list-header" *ngIf="activeListClassStyle == '__list'">
@@ -14,7 +23,7 @@
   </ul>
 
   <ul class="repo-info-list" [ngClass]="activeListClassStyle">
-    <li *ngFor="let repoInfo of reposInformationArray">
+    <li *ngFor="let repoInfo of reposInformationArray | orderBy:orderParams">
       <div class="card-name">
         {{ repoInfo.name | capitalize }}
       </div>
