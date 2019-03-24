@@ -3,13 +3,10 @@ export class RepoInfoModel {
     private qtdStars: number;
     private qtdForks: number;
 
-    constructor(data) {
-        const requiredFields = ['name', 'qtdStars', 'qtdForks'];
-        requiredFields.forEach( (reqF) => {
-            if (data[reqF]) {
-                this[reqF] = data[reqF];
-            }
-        });
+    constructor(repoJson) {
+        this.name = repoJson.name;
+        this.qtdStars = repoJson.stargazers_count;
+        this.qtdForks = repoJson.forks_count;
     }
 
     get(field: string) {

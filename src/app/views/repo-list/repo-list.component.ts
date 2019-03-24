@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from 'src/app/services/github/github.service';
+import { RepoInfoModel } from 'src/app/model/repo-info.model';
 
 @Component({
   selector: 'app-repo-list',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepoListComponent implements OnInit {
 
-  constructor() { }
+  private reposInformationArray: RepoInfoModel[];
+
+  constructor(private githubService: GithubService) {
+    this.reposInformationArray = [];
+  }
 
   ngOnInit() {
+    this.githubService.getRepoInformation()
+        .subscribe( (informationArray: RepoInfoModel[]) => {
+          this.reposInformationArray = informationArray;
+        });
   }
 
 }
