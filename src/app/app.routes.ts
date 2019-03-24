@@ -2,7 +2,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RepoListComponent } from './views/repo-list/repo-list.component';
 import { AuthGuard } from './guards/auth.guard';
 
-export default [
+export const ROUTES = [
     {
         path: '',
         component: LoginComponent,
