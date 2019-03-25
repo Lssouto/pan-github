@@ -11,6 +11,11 @@ na pasta static.
 O projeto consiste em duas branches principais a master, que é onde é feito o deploy para o heroku e contem o front compilado na pasta static, e a develop que contém o projeto
 gerado com o CLI na pasta front.
 
+
+### Rodando em cloud 
+
+Acessar o link `https://pan-github.herokuapp.com/`.
+
 ### Rodando na master
 
 Rodar o projeto na master é bem simples, somente entre na pasta do projeto rode o comando
@@ -38,3 +43,7 @@ yarn && yarn start
 ```
 
 Isso irá iniciar a parte do angular, no nosso caso o front `http://localhost:4200/`.
+
+### GitHubLogin troubleshoot
+
+Para rodar na master e na develop você vai precisar de outro client_id e client_secret que você pode conseguir `https://github.com/settings/developers`, gere uma OAuth Apps e coloque os valores no arquivo de environments. Eles serão substituidos e conectados na aplicação.
