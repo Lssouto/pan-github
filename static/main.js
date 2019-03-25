@@ -448,6 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/store/actions/auth.actions */ "./src/app/store/actions/auth.actions.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -463,17 +464,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AuthenticateService = /** @class */ (function () {
     function AuthenticateService(httpService, store) {
         this.httpService = httpService;
         this.store = store;
         this.isUserAuthenticate = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])('acessTkn'));
     }
+    // Authenthicate on github API and update the app state
     AuthenticateService.prototype.githubAuthenticate = function (code) {
         var _this = this;
         return this.httpService.post('/login', {
-            client_id: 'c63b5ef5b81e7610914a',
-            client_secret: '32f6b8910137569d316eae627e3947b1aa37d77b',
+            client_id: src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].client_id,
+            client_secret: src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].client_secret,
             code: code,
         })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (response) {
@@ -490,6 +493,7 @@ var AuthenticateService = /** @class */ (function () {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(error);
         }));
     };
+    // Control the success or failure to update the store
     AuthenticateService.prototype.commitAuthState = function (acessToken) {
         if (!!acessToken) {
             this.store.dispatch(new src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["SuccessAuth"](acessToken));
@@ -498,10 +502,12 @@ var AuthenticateService = /** @class */ (function () {
             this.store.dispatch(new src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["FailureAuth"]());
         }
     };
+    // Logout service from the app
     AuthenticateService.prototype.logoff = function () {
         this.store.dispatch(new src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["LogoutAuth"]());
         return this.isUserAuthenticate;
     };
+    // Return the the user from the state
     AuthenticateService.prototype.isUserLoggedIn = function () {
         return this.isUserAuthenticate;
     };
@@ -533,7 +539,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../http/http.service */ "./src/app/services/http/http.service.ts");
 /* harmony import */ var src_app_model_repo_info_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/repo-info.model */ "./src/app/model/repo-info.model.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _authenticate_authenticate_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../authenticate/authenticate.service */ "./src/app/services/authenticate/authenticate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -548,12 +553,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var GithubService = /** @class */ (function () {
-    function GithubService(httpService, authService) {
+    function GithubService(httpService) {
         this.httpService = httpService;
-        this.authService = authService;
     }
+    // Retrieve logged user repository information
     GithubService.prototype.getRepoInformation = function () {
         return this.httpService.get('/user/repos')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
@@ -568,7 +572,7 @@ var GithubService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_http_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"], _authenticate_authenticate_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticateService"]])
+        __metadata("design:paramtypes", [_http_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
     ], GithubService);
     return GithubService;
 }());
@@ -592,6 +596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -606,50 +611,58 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HttpService = /** @class */ (function () {
     function HttpService(http, store) {
         this.http = http;
         this.store = store;
         this.timeoutTime = 30 * 1000; // 30s
-        this.locationUrl = "https://" + window.location.hostname + "/api";
+        this.locationUrl = "https://" + window.location.hostname + ((src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].port) ? ':8080' : '') + "/api";
         this.acessToken = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])('acessTkn'));
     }
     HttpService.prototype.get = function (url) {
         // Subject to easy control the response
         var httpResponse = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        // Timeout in case of not connected
         var timeout = setTimeout(function () {
             httpResponse.error({ message: 'Não foi possível conectar. Por favor verifique sua conexão' });
         }, this.timeoutTime);
         this.http.get("" + this.locationUrl + url, { headers: this.getHeaders() })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
             httpResponse.error(error);
+            httpResponse.complete();
             clearTimeout(timeout);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(null);
         }))
             .subscribe(function (response) {
             clearTimeout(timeout);
             httpResponse.next(response);
+            httpResponse.complete();
         });
         return httpResponse;
     };
     HttpService.prototype.post = function (url, body) {
         // Subject to easy control the response
         var httpResponse = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        // Timeout in case of not connected
         var timeout = setTimeout(function () {
             httpResponse.error({ message: 'Não foi possível conectar. Por favor verifique sua conexão' });
         }, this.timeoutTime);
         this.http.post("" + this.locationUrl + url, body, { headers: this.getHeaders() })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
             httpResponse.error(error);
+            httpResponse.complete();
             clearTimeout(timeout);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(null);
         }))
             .subscribe(function (response) {
             clearTimeout(timeout);
             httpResponse.next(response);
+            httpResponse.complete();
         });
         return httpResponse;
     };
+    // Check the acess token and return headers based on value
     HttpService.prototype.getHeaders = function () {
         var headers;
         this.acessToken
@@ -804,7 +817,7 @@ function authReducer(state, action) {
         case _actions_auth_actions__WEBPACK_IMPORTED_MODULE_0__["ActionTypes"].Logout:
         case _actions_auth_actions__WEBPACK_IMPORTED_MODULE_0__["ActionTypes"].Failure:
             state = '';
-            window.sessionStorage.setItem('pgAcessToken', state);
+            window.sessionStorage.removeItem('pgAcessToken');
             return state;
         default:
             return state;
@@ -821,7 +834,7 @@ function authReducer(state, action) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-background bg-primary\" [style.minHeight]=\"windowMinHeight\">\n  <div class=\"centered-container\">\n      <div class=\"relative\">\n          <div class=\"logo\">\n              <span class=\"icon icon-logo\"></span>\n          </div>\n      </div>\n      <div class=\"centered-container-body\">\n        <div class=\"text\">\n            Logue-se para exibir seus repositórios\n        </div>\n          <a  href=\"https://github.com/login/oauth/authorize?scope=user:email&client_id=c63b5ef5b81e7610914a\"\n              class=\"btn btn-github bg-black\">\n              Logar-se com o \n              <span class=\"icon icon-github\"></span>\n        </a>\n          <!--<button class=\"btn btn-github bg-black\" (click)=\"login()\">Login</button>-->\n      </div>\n  </div>\n</div>"
+module.exports = "<div class=\"page-background bg-primary\" [style.minHeight]=\"windowMinHeight\">\n  <div class=\"centered-container\">\n      <div class=\"relative\">\n          <div class=\"logo\">\n              <span class=\"icon icon-logo\"></span>\n          </div>\n      </div>\n      <div class=\"centered-container-body\">\n        <div class=\"text\">\n            Logue-se para exibir seus repositórios\n        </div>\n          <a  [href]='gitHubAuthUrl'\n              class=\"btn btn-github bg-black\">\n              Logar-se com o \n              <span class=\"icon icon-github\"></span>\n        </a>\n          <!--<button class=\"btn btn-github bg-black\" (click)=\"login()\">Login</button>-->\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -849,6 +862,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_services_authenticate_authenticate_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/authenticate/authenticate.service */ "./src/app/services/authenticate/authenticate.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -861,25 +875,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(authService, router, routeParams) {
         this.authService = authService;
         this.router = router;
         this.routeParams = routeParams;
         this.windowMinHeight = window.innerHeight + "px";
+        this.gitHubAuthUrl = "https://github.com/login/oauth/authorize?scope=user:email&client_id=" + src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].client_id;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        var _this = this;
+        this.validateLogin();
+        // Give a timeout before animate in case of having code from github
         setTimeout(function () {
             document.querySelector('.centered-container').classList.add('active');
-            _this.validateLogin();
         }, 500);
     };
+    // Verify if page has code form github
     LoginComponent.prototype.validateLogin = function () {
         if (!!this.routeParams.snapshot.queryParams.code) {
             this.login(this.routeParams.snapshot.queryParams.code);
         }
     };
+    // Login
     LoginComponent.prototype.login = function (code) {
         var _this = this;
         this.authService.githubAuthenticate(code)
@@ -916,7 +934,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg bg-black\">\n  <a class=\"navbar-brand\">LSSouto</a>\n  <button class=\"navbar-toggler\"\n          type=\"button\"\n          data-toggle=\"collapse\"\n          aria-label=\"Toggle navigation\"\n          (click)=\"isCollapsed = !isCollapsed\">\n    <span class=\"caret\"></span>\n    <span class=\"caret\"></span>\n    <span class=\"caret\"></span>\n  </button>\n\n  <div class=\"navbar-collapse\" [ngClass]=\"{'collapse': isCollapsed}\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav\">\n      <li class=\"nav-item dropdown\" dropdown>\n        <a class=\"nav-link dropdown-toggle\" \n            data-toggle=\"dropdown\" \n            aria-expanded=\"false\"\n            dropdownToggle>\n          Visualizar como\n        </a>\n        <div class=\"dropdown-menu\" *dropdownMenu>\n          <a class=\"dropdown-item\" (click)=\"toggleListClass('__list')\">\n            <span class=\"icon icon-menu\"></span> Lista\n          </a>\n          <a class=\"dropdown-item\" (click)=\"toggleListClass('__card')\">\n            <span class=\"icon icon-checkbox-unchecked\"></span> Cards\n          </a>\n        </div>\n      </li>\n      <li class=\"nav-item dropdown\" dropdown>\n        <a class=\"nav-link dropdown-toggle\" \n            data-toggle=\"dropdown\" \n            aria-expanded=\"false\"\n            dropdownToggle>\n          Ordernar Por\n        </a>\n        <div class=\"dropdown-menu\" *dropdownMenu>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('name')\">Nome</a>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('qtdStars')\">Stars</a>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('qtdForks')\">Forks</a>\n        </div>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg bg-black\">\n  <a class=\"navbar-brand\">LSSouto</a>\n  <button class=\"navbar-toggler\"\n          type=\"button\"\n          data-toggle=\"collapse\"\n          aria-label=\"Toggle navigation\"\n          (click)=\"isCollapsed = !isCollapsed\">\n    <span class=\"caret\"></span>\n    <span class=\"caret\"></span>\n    <span class=\"caret\"></span>\n  </button>\n\n  <div class=\"navbar-collapse\" [ngClass]=\"{'collapse': isCollapsed}\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav\">\n      <li class=\"nav-item dropdown dropdown-list-view\" dropdown>\n        <a class=\"nav-link dropdown-toggle\" \n            data-toggle=\"dropdown\" \n            aria-expanded=\"false\"\n            dropdownToggle>\n          Visualizar como\n        </a>\n        <div class=\"dropdown-menu\" *dropdownMenu>\n          <a class=\"dropdown-item\" (click)=\"toggleListClass('__list')\">\n            <span class=\"icon icon-menu\"></span> Lista\n          </a>\n          <a class=\"dropdown-item\" (click)=\"toggleListClass('__card')\">\n            <span class=\"icon icon-checkbox-unchecked\"></span> Cards\n          </a>\n        </div>\n      </li>\n      <li class=\"nav-item dropdown dropdown-list-order\" dropdown>\n        <a class=\"nav-link dropdown-toggle\" \n            data-toggle=\"dropdown\" \n            aria-expanded=\"false\"\n            dropdownToggle>\n          Ordernar Por\n        </a>\n        <div class=\"dropdown-menu\" *dropdownMenu>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('name')\">Nome</a>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('qtdStars')\">Stars</a>\n          <a class=\"dropdown-item\" (click)=\"toggleOrder('qtdForks')\">Forks</a>\n        </div>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -962,16 +980,17 @@ var RepoListHeaderComponent = /** @class */ (function () {
         this.isCollapsed = true;
         this.emitEvent();
     }
-    RepoListHeaderComponent.prototype.ngOnInit = function () {
-    };
+    // Toggler to the list view class
     RepoListHeaderComponent.prototype.toggleListClass = function (type) {
         this.filterConfig.classStyle = type;
         this.emitEvent();
     };
+    // Toggler to the list order
     RepoListHeaderComponent.prototype.toggleOrder = function (type) {
         this.filterConfig.order = type;
         this.emitEvent();
     };
+    // Emit the event to update the configs
     RepoListHeaderComponent.prototype.emitEvent = function () {
         this.filterOptions.emit(this.filterConfig);
     };
@@ -1053,6 +1072,7 @@ var RepoListComponent = /** @class */ (function () {
             _this.reposInformationArray = informationArray;
         });
     };
+    // Handle the event from header that update config
     RepoListComponent.prototype.filterOptionsHandler = function (val) {
         this.activeListClassStyle = val.classStyle;
         this.orderParams = val.order;
@@ -1147,7 +1167,10 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    port: 8080,
+    client_id: 'c63b5ef5b81e7610914a',
+    client_secret: '32f6b8910137569d316eae627e3947b1aa37d77b',
 };
 /*
  * For easier debugging in development mode, you can import the following file
