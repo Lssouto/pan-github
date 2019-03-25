@@ -18,5 +18,8 @@
     "request": "^2.88.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "8.11.2"
+  }
 }
