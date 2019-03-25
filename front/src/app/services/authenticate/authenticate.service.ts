@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { SuccessAuth, FailureAuth, LogoutAuth } from 'src/app/store/actions/auth.actions';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticateService {
   // Export user state
   private isUserAuthenticate: Observable<string>;
 
-  constructor(private httpService: HttpService, private store: Store<{ acessTkn: string }>) {
+  constructor(private httpService: HttpService, private store: Store<{ acessTkn: string }>, private router: Router) {
     this.isUserAuthenticate = this.store.pipe(select('acessTkn'));
   }
   // Authenthicate on github API and update the app state
@@ -50,9 +51,9 @@ export class AuthenticateService {
     }
   }
   // Logout service from the app
-  public logoff(): Observable<string> {
+  public logoff(): void {
     this.store.dispatch(new LogoutAuth());
-    return this.isUserAuthenticate;
+    this.router.navigate(['/']);
   }
   // Return the the user from the state
   public isUserLoggedIn(): Observable<string> {

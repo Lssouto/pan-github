@@ -11,7 +11,7 @@
   </button>
 
   <div class="navbar-collapse" [ngClass]="{'collapse': isCollapsed}" id="navbarSupportedContent">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown dropdown-list-view" dropdown>
         <a class="nav-link dropdown-toggle" 
             data-toggle="dropdown" 
@@ -28,7 +28,7 @@
           </a>
         </div>
       </li>
-      <li class="nav-item dropdown dropdown-list-order" dropdown>
+      <li class="nav-item dropdown dropdown-list-order mr-auto" dropdown>
         <a class="nav-link dropdown-toggle" 
             data-toggle="dropdown" 
             aria-expanded="false"
@@ -42,5 +42,8 @@
         </div>
       </li>
     </ul>
+    <div class="my-2 my-lg-0">
+      <a (click)="logout()">Logout</a>
+    </div>
   </div>
 </nav>

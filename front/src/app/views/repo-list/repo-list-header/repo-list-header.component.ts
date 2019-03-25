@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
 
 @Component({
   selector: 'app-repo-list-header',
@@ -17,7 +18,7 @@ export class RepoListHeaderComponent {
   @Output()
   private filterOptions: EventEmitter<{classStyle: string, order: string}>;
 
-  constructor() {
+  constructor(private authService: AuthenticateService) {
     this.filterOptions = new EventEmitter();
     this.filterConfig = {
       classStyle: '__card',
@@ -39,5 +40,9 @@ export class RepoListHeaderComponent {
   // Emit the event to update the configs
   private emitEvent(): void {
     this.filterOptions.emit(this.filterConfig);
+  }
+  // Exit the app
+  private logout(): void {
+    this.authService.logoff();
   }
 }
