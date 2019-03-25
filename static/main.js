@@ -611,7 +611,7 @@ var HttpService = /** @class */ (function () {
         this.http = http;
         this.store = store;
         this.timeoutTime = 30 * 1000; // 30s
-        this.locationUrl = "https://" + window.location.hostname + ":8080/api";
+        this.locationUrl = "https://" + window.location.hostname + "/api";
         this.acessToken = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])('acessTkn'));
     }
     HttpService.prototype.get = function (url) {

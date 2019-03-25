@@ -13,7 +13,7 @@ export class HttpService {
   private locationUrl: string;
   private acessToken: Observable<string>;
   constructor(private http: HttpClient, private store: Store<{ acessTkn: string }>) {
-    this.locationUrl = `https://${window.location.hostname}:8080/api`;
+    this.locationUrl = `https://${window.location.hostname}/api`;
     this.acessToken = this.store.pipe(select('acessTkn'));
   }
 
