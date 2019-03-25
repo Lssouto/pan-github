@@ -1,5 +1,6 @@
 import express from 'express'
 import https from 'https'
+import http from 'http'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import fs from 'fs'
@@ -22,6 +23,6 @@ const certificate = {
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = "0";
 const port = process.env.PORT || 8080;
-https.createServer(certificate, app).listen(port, () => {
+http.createServer(app).listen(port, () => {
     console.log('Listening...', port)
 });
