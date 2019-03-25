@@ -12,7 +12,7 @@ export function authReducer(state = initialState, action: Actions) {
         case ActionTypes.Logout:
         case ActionTypes.Failure:
             state = '';
-            window.sessionStorage.setItem('pgAcessToken', state);
+            window.sessionStorage.removeItem('pgAcessToken');
             return state;
 
         default:

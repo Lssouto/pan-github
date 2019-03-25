@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Subject, of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,22 +13,23 @@ export class HttpService {
   private locationUrl: string;
   private acessToken: Observable<string>;
   constructor(private http: HttpClient, private store: Store<{ acessTkn: string }>) {
-    this.locationUrl = `https://${window.location.hostname}/api`;
+    this.locationUrl = `https://${window.location.hostname}${(environment.port) ? ':8080' : ''}/api`;
     this.acessToken = this.store.pipe(select('acessTkn'));
   }
 
   public get(url: string): Subject<any> {
     // Subject to easy control the response
     const httpResponse = new Subject();
-
+    // Timeout in case of not connected
     const timeout = setTimeout(() => {
-      httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'})
+      httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'});
     }, this.timeoutTime);
 
     this.http.get(`${this.locationUrl}${url}`, { headers: this.getHeaders() })
       .pipe(
         catchError((error) => {
           httpResponse.error(error);
+          httpResponse.complete();
           clearTimeout(timeout);
           return of(null);
         })
@@ -36,6 +37,7 @@ export class HttpService {
       .subscribe((response: Response) => {
         clearTimeout(timeout);
         httpResponse.next(response);
+        httpResponse.complete();
       });
 
     return httpResponse;
@@ -44,15 +46,16 @@ export class HttpService {
   public post(url: string, body: any): Subject<any> {
     // Subject to easy control the response
     const httpResponse = new Subject();
-
+    // Timeout in case of not connected
     const timeout = setTimeout(() => {
-      httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'})
+      httpResponse.error({message: 'Não foi possível conectar. Por favor verifique sua conexão'});
     }, this.timeoutTime);
 
     this.http.post(`${this.locationUrl}${url}`, body, { headers: this.getHeaders() })
       .pipe(
         catchError((error) => {
           httpResponse.error(error);
+          httpResponse.complete();
           clearTimeout(timeout);
           return of(null);
         })
@@ -60,11 +63,12 @@ export class HttpService {
       .subscribe((response: Response) => {
         clearTimeout(timeout);
         httpResponse.next(response);
+        httpResponse.complete();
       });
 
     return httpResponse;
   }
-
+  // Check the acess token and return headers based on value
   private getHeaders(): HttpHeaders {
     let headers: HttpHeaders;
     this.acessToken

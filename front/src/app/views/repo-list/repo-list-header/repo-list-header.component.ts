@@ -5,13 +5,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './repo-list-header.component.html',
   styleUrls: ['./repo-list-header.component.scss']
 })
-export class RepoListHeaderComponent implements OnInit {
+export class RepoListHeaderComponent {
+  // Filter config used on parent component
   private filterConfig: {
     classStyle: string,
     order: string
   };
+  // Control the collapse state when mobile
   private isCollapsed: boolean;
-
+  // Output the filterConfig
   @Output()
   private filterOptions: EventEmitter<{classStyle: string, order: string}>;
 
@@ -23,22 +25,19 @@ export class RepoListHeaderComponent implements OnInit {
     };
     this.isCollapsed = true;
     this.emitEvent();
-   }
-
-  ngOnInit() {
   }
-
-  private toggleListClass(type: string) {
+  // Toggler to the list view class
+  private toggleListClass(type: string): void {
     this.filterConfig.classStyle = type;
     this.emitEvent();
   }
-
-  private toggleOrder(type: string) {
+  // Toggler to the list order
+  private toggleOrder(type: string): void {
     this.filterConfig.order = type;
     this.emitEvent();
   }
-
-  private emitEvent(){
+  // Emit the event to update the configs
+  private emitEvent(): void {
     this.filterOptions.emit(this.filterConfig);
   }
 }

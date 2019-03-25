@@ -9,9 +9,11 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./repo-list.component.scss']
 })
 export class RepoListComponent implements OnInit {
-
+  // List of repositorys
   private reposInformationArray: RepoInfoModel[];
+  // Control how the list is show
   private activeListClassStyle: string;
+  // Control the list order sending to the pipe on ngFor
   private orderParams: string;
 
   constructor(private githubService: GithubService) {
@@ -20,14 +22,15 @@ export class RepoListComponent implements OnInit {
     this.orderParams = 'name';
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.githubService.getRepoInformation()
         .subscribe( (informationArray: RepoInfoModel[]) => {
           this.reposInformationArray = informationArray;
         });
   }
 
-  private filterOptionsHandler(val) {
+  // Handle the event from header that update config
+  private filterOptionsHandler(val: {classStyle: string, order: string}): void {
     this.activeListClassStyle = val.classStyle;
     this.orderParams = val.order;
   }
