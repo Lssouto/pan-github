@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepoListHeaderComponent } from './repo-list-header.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 describe('RepoListHeaderComponent', () => {
   let component: RepoListHeaderComponent;
@@ -8,7 +9,7 @@ describe('RepoListHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RepoListHeaderComponent ]
+      declarations: [ RepoListHeaderComponent ],
     })
     .compileComponents();
   }));
@@ -22,4 +23,5 @@ describe('RepoListHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

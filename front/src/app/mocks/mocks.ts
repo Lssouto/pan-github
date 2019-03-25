@@ -1,5 +1,5 @@
-import { Observable, of } from "rxjs";
-import { RepoInfoModel } from "../model/repo-info.model";
+import { Observable, of } from 'rxjs';
+import { RepoInfoModel } from '../model/repo-info.model';
 
 const mockedRepoInfoModel = new RepoInfoModel({
     name: 'Repository',

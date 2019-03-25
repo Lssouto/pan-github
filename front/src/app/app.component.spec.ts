@@ -2,9 +2,10 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient } from '@angular/common/http';
-import { httpClientMock } from './mocks/mocks';
+import { httpClientMock, GithubServiceMock } from './mocks/mocks';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers/auth.reducer';
+import { GithubService } from './services/github/github.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -18,6 +19,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: HttpClient, useClass: httpClientMock },
+        { provide: GithubService, useClass: GithubServiceMock },
       ]
     }).compileComponents();
   }));
