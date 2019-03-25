@@ -10,11 +10,11 @@ import { Observable, of } from 'rxjs';
 })
 export class RepoListComponent implements OnInit {
   // List of repositorys
-  private reposInformationArray: RepoInfoModel[];
+  public reposInformationArray: RepoInfoModel[];
   // Control how the list is show
-  private activeListClassStyle: string;
+  public activeListClassStyle: string;
   // Control the list order sending to the pipe on ngFor
-  private orderParams: string;
+  public orderParams: string;
 
   constructor(private githubService: GithubService) {
     this.reposInformationArray = [];
@@ -30,7 +30,7 @@ export class RepoListComponent implements OnInit {
   }
 
   // Handle the event from header that update config
-  private filterOptionsHandler(val: {classStyle: string, order: string}): void {
+  public filterOptionsHandler(val: {classStyle: string, order: string}): void {
     this.activeListClassStyle = val.classStyle;
     this.orderParams = val.order;
   }

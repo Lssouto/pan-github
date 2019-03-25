@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
 
   // Ensure that the background will be 100%
-  private windowMinHeight: string;
+  public windowMinHeight: string;
   // Just binding value from environment
-  private gitHubAuthUrl: string;
+  public gitHubAuthUrl: string;
   constructor(
     private authService: AuthenticateService,
     private router: Router,

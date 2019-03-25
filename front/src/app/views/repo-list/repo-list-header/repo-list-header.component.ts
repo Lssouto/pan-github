@@ -7,12 +7,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class RepoListHeaderComponent {
   // Filter config used on parent component
-  private filterConfig: {
+  public filterConfig: {
     classStyle: string,
     order: string
   };
   // Control the collapse state when mobile
-  private isCollapsed: boolean;
+  public isCollapsed: boolean;
   // Output the filterConfig
   @Output()
   private filterOptions: EventEmitter<{classStyle: string, order: string}>;
