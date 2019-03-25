@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
     this.validateLogin();
     // Give a timeout before animate in case of having code from github
     setTimeout(() => {
-      document.querySelector('.centered-container').classList.add('active');
+      const element = document.querySelector('.centered-container')
+      if (element) {
+        element.classList.add('active');
+      }
     }, 500);
   }
 
