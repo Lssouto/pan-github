@@ -42,7 +42,7 @@ export class RepoListHeaderComponent {
     this.filterOptions.emit(this.filterConfig);
   }
   // Exit the app
-  private logout(): void {
+  public logout(): void {
     this.authService.logoff();
   }
 }
